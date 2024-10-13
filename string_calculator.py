@@ -8,5 +8,10 @@ def add(numbers):
             delimiter = parts[0][2:]
             numbers = parts[1]
         numbers = numbers.replace("\n", delimiter)
-        nums = map(int, numbers.split(delimiter))
+        nums = list(map(int, numbers.split(delimiter)))
+
+        negatives = [num for num in nums if num < 0]
+        if negatives:
+            raise ValueError(f"negative numbers not allowed: {', '.join(map(str, negatives))}")
+        
         return sum(nums)
